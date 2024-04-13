@@ -44,10 +44,10 @@ class TrafficLightEnv(Env):
     # other var if needed = self.observation_space.sample()[self.roads_count*6 : self.roads_count*7] ...
 
     self.state = np.reshape([
-      self.green_light_timer//self.max_value,
-      self.avg_waiting_times//(self.max_value*3),
-      self.vehicles_counts//self.max_value,
-      self.in_counts//self.max_value,
+      self.green_light_timer/self.max_value,
+      self.avg_waiting_times/(self.max_value*3),
+      self.vehicles_counts/self.max_value,
+      self.in_counts/self.max_value,
       #  self.out_counts,
       #  self.avg_speeds
        ],-1)
@@ -68,10 +68,10 @@ class TrafficLightEnv(Env):
     # self.patience = self.roads_count+1
     
     self.state = np.reshape([
-    self.green_light_timer//self.max_value,
-    self.avg_waiting_times//(self.max_value*3),
-    self.vehicles_counts//self.max_value,
-    self.in_counts//self.max_value,
+    self.green_light_timer/self.max_value,
+    self.avg_waiting_times/(self.max_value*3),
+    self.vehicles_counts/self.max_value,
+    self.in_counts/self.max_value,
     # self.out_counts,
     # self.avg_speeds
     ],-1)
@@ -120,7 +120,7 @@ class TrafficLightEnv(Env):
     if(action[-1]==0):
         # if all timer are bigger that dec value
         if(all(i > self.change_size for i in self.green_light_timer)):
-            self.green_light_timer = np.subtract(self.green_light_timer, self.change_size*2)
+            self.green_light_timer = np.subtract(self.green_light_timer, self.change_size)
     # increase
     elif(action[-1]==2):
         if(all(i + self.change_size <= self.max_value for i in self.green_light_timer)):
@@ -190,7 +190,7 @@ class TrafficLightEnv(Env):
 
     reward = 0
     # Penalties
-    reward -= self.avg_waiting_times.sum()
+    reward -= self.avg_waiting_times.sum()//(self.roads_count-1)
     reward -=  remaining_vehicles.sum()
     # Fairness (wighted)
     reward -= (np.max(self.avg_waiting_times) - np.min(self.avg_waiting_times))*2
@@ -200,14 +200,14 @@ class TrafficLightEnv(Env):
     # reward += self.avg_speeds.sum()
 
     # normalize, only for this case
-    reward /= (self.max_value * (12+4+12+4)) 
+    reward /= (self.max_value * (self.roads_count*4)) 
 
     # normalize, only for this case
     self.state = np.reshape([
-    self.green_light_timer//self.max_value,
-    self.avg_waiting_times//(self.max_value*3),
-    self.vehicles_counts//self.max_value,
-    self.in_counts//self.max_value,
+    self.green_light_timer/self.max_value,
+    self.avg_waiting_times/(self.max_value*3),
+    self.vehicles_counts/self.max_value,
+    self.in_counts/self.max_value,
     # self.out_counts,
     # self.avg_speeds
     ],-1)
