@@ -7,7 +7,7 @@ And also custom OpenAI gym envornment and Rainbow agent to train a RL model base
 ## Installation
 
 ```bash
-1. git clone https://github.com/Mahdijamebozorg/vehicles-track-count-and-speed-estimation.git
+1. git clone https://github.com/Mahdijamebozorg/Traffic-Signal_Control-with-RL-YOLOv9-Surveillance-Camera.git
 2. pip install ultralytics
 3. pip install supervision
 4. pip install gym
