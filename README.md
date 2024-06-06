@@ -1,8 +1,10 @@
 # Traffic Signal Controll by Tracking, counting and speed estimation of vehicles on surveillance cameras using YOLO v9 and Reinforcement Learning
 
-This repository contains Python code for tracking vehicles (such as cars, buses, and bikes) as they enter and exit the road, thereby incrementing the counters for incoming and outgoing vehicles. and also speed estimation is calculated by mathematical calcualtion and video info like freame rate
+This repository contains Python code for tracking vehicles (such as cars, buses, and bikes) as they enter and exit the road, thereby incrementing the counters for incoming and outgoing vehicles. and also speed estimation is calculated by mathematical calcualtion and video info like fps
 
 And also custom OpenAI gym envornment and Rainbow agent to train a RL model based on traffic state reaciving from surveillance cameras
+
+article link: https://www.researchgate.net/publication/380820559_Traffic_control_using_intelligent_timing_of_traffic_lights_with_reinforcement_learning_technique_and_real-time_processing_of_surveillance_camera_images
 
 ## Installation
 
@@ -23,6 +25,4 @@ https://github.com/sankalpvarshney/Track-And-Count-Object-using-YOLO/assets/4192
 
 Pull requests are welcome. For major changes, please open an issue first
 to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
 
